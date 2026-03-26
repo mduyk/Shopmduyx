@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<title>Thanh toán</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+body{
+    margin:0;
+    font-family:Arial;
+    background: radial-gradient(circle,#020617,#000);
+    color:white;
+
+    /* 🔥 CENTER FULL */
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    overflow:hidden;
+}
+
+/* KHUNG BANK */
+.box{
+    width:340px;
+    background:#1e293b;
+    padding:20px;
+    border-radius:18px;
+    text-align:center;
+
+    box-shadow:0 0 25px rgba(0,0,0,0.6);
+
+    animation: float 4s ease-in-out infinite;
+}
+
+/* BAY NHẸ */
+@keyframes float{
+    0%{transform:translateY(0px);}
+    50%{transform:translateY(-10px);}
+    100%{transform:translateY(0px);}
+}
+
+.price{
+    color:#22c55e;
+    font-weight:bold;
+}
+
+/* COPY */
+.copy{
+    color:#22c55e;
+    cursor:pointer;
+}
+
+/* THÔNG BÁO NGAY DƯỚI BOX (CŨNG CENTER) */
+.note{
+    margin-top:15px;
+    font-size:14px;
+    color:#fbbf24;
+    text-align:center;
+    animation: blink 2s infinite;
+}
+
+/* NHẤP NHÁY NHẸ */
+@keyframes blink{
+    0%,100%{opacity:0.4;}
+    50%{opacity:1;}
+}
+
+/* BUTTON */
+button{
+    width:100%;
+    padding:10px;
+    border:none;
+    border-radius:15px;
+    background:#22c55e;
+    color:white;
+    margin-top:10px;
+}
+</style>
+</head>
+
+<body>
+
+<div>
+
+    <!-- BOX -->
+    <div class="box">
+        <h3>💳 Thanh toán</h3>
+
+        <p><b>Gói:</b> <span id="product"></span></p>
+        <p class="price"><span id="price"></span>đ</p>
+
+        <p><b>MB Bank</b></p>
+
+        <p><b>STK:</b></p>
+        <p class="copy" onclick="copy('0588807300000')">
+            0588807300000
+        </p>
+
+        <p><b>Chủ TK:</b> Cao Minh Duy</p>
+
+        <p><b>Nội dung:</b></p>
+        <p class="copy" id="nd" onclick="copyND()"></p>
+
+        <button onclick="paid()">Tôi đã thanh toán</button>
+    </div>
+
+    <!-- NOTE CENTER -->
+    <div class="note">
+        ⚠️ Nhớ để lại số điện thoại của bạn sau nội dung chuyển khoản
+    </div>
+
+</div>
+
+<script>
+product.innerText = localStorage.getItem("product");
+price.innerText = localStorage.getItem("price");
+
+// random nội dung
+let nd = "MDUYK" + Math.floor(100000+Math.random()*900000);
+document.getElementById("nd").innerText = nd;
+
+// copy
+function copy(text){
+    navigator.clipboard.writeText(text);
+    alert("Đã copy!");
+}
+
+function copyND(){
+    navigator.clipboard.writeText(nd);
+    alert("Đã copy nội dung!");
+}
+
+function paid(){
+    alert("Đã ghi nhận thanh toán!");
+}
+</script>
+
+</body>
+</html>
